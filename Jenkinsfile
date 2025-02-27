@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',url: 'https://github.com/kesarwanishubhi/ScientificCalculator.git'
+                git branch: 'main',url: 'https://github.com/kesarwanishubhi/ScientificCalculator'
             }
         }
         stage('Build') {
