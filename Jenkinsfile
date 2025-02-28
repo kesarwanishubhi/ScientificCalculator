@@ -49,27 +49,25 @@ pipeline {
                            sh 'wsl -u root whoami'
                        }
                    }
+
                    stage('Verify Ansible Installation') {
                        steps {
                            sh 'wsl -u root ansible --version'
                        }
                    }
+
                    stage('Check Deployment Directory') {
                        steps {
-                           sh 'wsl -u root ls -l /root/ansible-deployment'
+                           sh 'wsl -u root ls -l /root/ansible-deployment || mkdir -p /root/ansible-deployment'
                        }
                    }
+
                    stage('Deploy with Ansible') {
                        steps {
-                           sh 'wsl -u root ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml'
+                           sh 'wsl -u root /usr/bin/ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml'
                        }
                    }
-//                }
-//         stage('Deploy with Ansible') {  // ✅ Fixed - No nested stage
-//             steps {
-//                 sh 'wsl -u root ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml'
-//             }
-//         }
+
 
     }
 }
