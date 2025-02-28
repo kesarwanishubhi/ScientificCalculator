@@ -39,7 +39,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-               sh 'wsl.exe -u root -- bash -c "cd /mnt/c/Users/Hp/ansible-deployment && ansible-playbook -i inventory.ini deploy.yml"'
+               sh 'wsl ansible-playbook -i ~/ansible-deployment/inventory.ini ~/ansible-deployment/deploy.yml'
 
             }
         }
