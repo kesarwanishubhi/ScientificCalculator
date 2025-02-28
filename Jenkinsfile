@@ -39,7 +39,12 @@ pipeline {
 
         stage('Deploy with Ansible') {  // ✅ Fixed - No nested stage
             steps {
-                sh 'ansible-playbook -i inventory.ini deploy.yml'
+                sh 'wsl -u root -- bash -c "ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml"'
+            }
+        }
+        stage('Debug WSL') {
+            steps {
+                sh 'wsl -u root whoami'
             }
         }
     }
