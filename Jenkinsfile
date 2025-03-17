@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'kesarwani05/scientific-calculator'  // Define the Docker image name
+        DOCKER_IMAGE = 'kesarwani05/scientific-calculator'
     }
     stages {
         stage('Checkout') {
@@ -36,38 +36,12 @@ pipeline {
                 }
             }
         }
-         stage('Debug WSL') {
-                    steps {
-                        sh 'wsl -u root whoami'
-                        sh 'wsl -u root ansible --version'
-                        sh 'wsl -u root ls -l /root/ansible-deployment'
-                    }
-           }
 
-           stage('Check WSL User') {
-                       steps {
-                           sh 'wsl -u root whoami'
-                       }
-                   }
-
-                   stage('Verify Ansible Installation') {
-                       steps {
-                           sh 'wsl -u root ansible --version'
-                       }
-                   }
-
-                   stage('Check Deployment Directory') {
-                       steps {
-                           sh 'wsl -u root ls -l /root/ansible-deployment || mkdir -p /root/ansible-deployment'
-                       }
-                   }
-
-                   stage('Deploy with Ansible') {
-                       steps {
-                           sh 'wsl -u root /usr/bin/ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml'
-                       }
-                   }
-
-
+        stage('Deploy with Ansible') {
+            steps {
+                // Using bat command for Windows environments
+                bat 'wsl -u root bash -c "ansible-playbook -i /root/ansible-deployment/inventory.ini /root/ansible-deployment/deploy.yml"'
+            }
+        }
     }
 }
