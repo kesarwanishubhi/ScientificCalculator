@@ -1,7 +1,5 @@
 package com.shubhi.scientificcalculator;
 
-import com.shubhi.scientificcalculator.service.CalculatorService;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
@@ -9,60 +7,43 @@ import java.util.Scanner;
 @SpringBootApplication
 public class ScientificCalculatorApplication {
 
-    public static void main(String[] args) {
+    public static void main( String[] args ) {
+        char ch = 'y';
+        System.out.println("------ Simple Calculator Program ------");
+        Scanner sc = new Scanner(System.in);
+        CalculatorFunctions fun = new CalculatorFunctions();
+        while(ch == 'y') {
+            System.out.print("1. Square root of a number \n2. Factorial of a number \n3. Natural Log of a number \n4. Power of a number \nEnter the operation you want to perform(1, 2, 3 or 4): ");
 
-        SpringApplication.run(ScientificCalculatorApplication.class, args);
-        CalculatorService calculatorService = new CalculatorService();
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("\n--- Scientific Calculator Menu ---");
-            System.out.println("1. Square Root");
-            System.out.println("2. Power");
-            System.out.println("3. Sine");
-            System.out.println("4. Cosine");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
-
-            int choice = scanner.nextInt();
-
-            switch (choice) {
+            int op = sc.nextInt();
+            switch(op) {
                 case 1:
-                    System.out.print("Enter a number: ");
-                    double num = scanner.nextDouble();
-                    System.out.println("Square Root: " + calculatorService.squareRoot(num));
+                    System.out.print("\nEnter the number: ");
+                    System.out.println("\nSquare root is: " + fun.sqrt(sc.nextDouble()));
                     break;
-
                 case 2:
-                    System.out.print("Enter base: ");
-                    double base = scanner.nextDouble();
-                    System.out.print("Enter exponent: ");
-                    double exponent = scanner.nextDouble();
-                    System.out.println("Power Result: " + calculatorService.power(base, exponent));
+                    System.out.print("\nEnter the number: ");
+                    System.out.println("\nFactorial is: " + fun.fact(sc.nextInt()));
                     break;
-
                 case 3:
-                    System.out.print("Enter angle (degrees): ");
-                    double angleSin = scanner.nextDouble();
-                    System.out.println("Sine Result: " + calculatorService.sine(angleSin));
+                    System.out.print("\nEnter the number: ");
+                    System.out.println("\nNatural Log is: " + fun.log(sc.nextDouble()));
                     break;
-
                 case 4:
-                    System.out.print("Enter angle (degrees): ");
-                    double angleCos = scanner.nextDouble();
-                    System.out.println("Cosine Result: " + calculatorService.cosine(angleCos));
+                    System.out.print("\nEnter the numbers: ");
+                    double a = sc.nextDouble();
+                    double b = sc.nextDouble();
+                    System.out.println("\nPower is: " + fun.pow(a, b));
                     break;
-
-                case 5:
-                    System.out.println("Exiting the calculator. Goodbye!");
-                    scanner.close();
-                    System.exit(0);
-
-                default:
-                    System.out.println("Invalid choice! Please try again.");
+                default : System.out.println("\n------ Wrong choice ------");
+                    break;
             }
+
+            System.out.print("\nDo you want to perform any other operation? Press y or n: ");
+            ch = sc.next().charAt(0);
         }
 
+        System.out.println("\n------ Ending Of Program ------");
     }
 
 }
