@@ -18,13 +18,11 @@
 FROM ubuntu:latest
 
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jdk
+    apt-get install -y openjdk-17-jdk
 
 RUN mkdir /app
-
+WORKDIR /app
 # Copy the JAR file from the target directory into the container
 COPY target/ScientificCalculator-0.0.1-SNAPSHOT.jar app.jar
-
-WORKDIR /app
 
 CMD ["java", "-jar", "app.jar"]
