@@ -10,4 +10,4 @@
       ignore_errors: yes
 
     - name: Run Docker Container
-      command: docker run -d --name scientific-calculator -p 9091:8080 kesarwani05/scientific-calculator
+      command: sudo docker run -it -d --name scientific-calculator kesarwani05/scientific-calculator
