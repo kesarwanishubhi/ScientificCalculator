@@ -83,7 +83,7 @@ public class ScientificCalculatorApplication {
             }
 
             System.out.print("Enter value of x: ");
-            System.out.print("This is test statement");
+            System.out.print("This is test statement")
             double x = scanner.nextDouble();
 
             switch (choice) {
