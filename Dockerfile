@@ -16,3 +16,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 CMD ["sh", "-c", "while true; do sleep 3600; done"]
 
 
+
+
+
+
