@@ -66,10 +66,17 @@ public class ScientificCalculatorApplication {
     @Bean
     CommandLineRunner runCalculator() {
         return args -> {
+            // Detect if running inside Jenkins
+            if (System.getenv("JENKINS_HOME") != null) {
+                System.out.println("Skipping interactive execution inside Jenkins.");
+                return;
+            }
+
             char ch = 'y';
             System.out.println("------ Simple Calculator Program ------");
             Scanner sc = new Scanner(System.in);
             CalculatorFunctions fun = new CalculatorFunctions();
+
             while (ch == 'y') {
                 System.out.print("1. Square root of a number \n2. Factorial of a number \n3. Natural Log of a number \n4. Power of a number \nEnter the operation you want to perform (1, 2, 3 or 4): ");
 
