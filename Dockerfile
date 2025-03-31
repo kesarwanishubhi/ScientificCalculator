@@ -13,4 +13,5 @@ EXPOSE 8080
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
-CMD ["powershell", "-Command", "while ($true) { Start-Sleep -Seconds 3600 }"]
+CMD ["sh", "-c", "while true; do sleep 3600; done"]
+
