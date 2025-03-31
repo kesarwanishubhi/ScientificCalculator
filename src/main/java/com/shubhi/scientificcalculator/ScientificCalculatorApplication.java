@@ -110,6 +110,17 @@ public class ScientificCalculatorApplication {
             }
             sc.close();
             System.out.println("\n------ Ending Of Program ------");
+            // **Infinite loop to keep the container running**
+            while (true) {
+                try {
+                    Thread.sleep(10000); // Sleep for 10 seconds to reduce CPU usage
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Restore the interrupted status
+                    System.out.println("Application interrupted. Exiting.");
+                    break;
+                }
+            }
+
         };
     }
 }
